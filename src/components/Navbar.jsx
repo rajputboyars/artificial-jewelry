@@ -13,7 +13,7 @@ const Navbar = () => {
   const isActive = (path) => (pathname === path ? "text-secondary font-bold" : "hover:text-secondary");
 
   return (
-    <nav className="bg-primary fixed w-full top-0 text-lightBackground shadow-md z-50">
+    <nav className="bg-primary sticky w-full top-0 text-lightBackground shadow-md z-50">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <div>
