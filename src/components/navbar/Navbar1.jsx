@@ -104,7 +104,7 @@ const Navbar1 = () => {
             {/* Mobile Menu */}
             {/* {isMenuOpen && ( */}
                 <div className={`md:hidden `}>
-                    <div className={`bg-primary fixed right-0 w-full h-screen text-lightBackground flex flex-col gap-4 p-4 transition-all duration-700 ${isMenuOpen ? "w-screen " : "w-0 translate-x-40 "}`}>
+                    <div className={`bg-primary fixed right-0 w-full h-screen text-lightBackground flex flex-col gap-4 p-4 transition-all duration-700 ${isMenuOpen ? "w-screen " : "w-0 translate-x-80 "}`}>
                         <Link onClick={()=>setIsMenuOpen((prev)=>!prev)} href="/">
                             <p className={`${isActive("/")}`}>Home</p>
                         </Link>
