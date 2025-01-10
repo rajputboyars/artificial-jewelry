@@ -29,13 +29,13 @@ const Navbar = () => {
             <p className={isActive("/")}>Home</p>
           </Link>
           <Link href="/products">
-            <p className={isActive("/products")}>Products</p>
+            <p className={isActive("/products")}>All Products</p>
           </Link>
-          <Link href="/about">
-            <p className={isActive("/about")}>About</p>
+          <Link href="/new-arrivals">
+            <p className={isActive("/new-arrivals")}>New Arrivals</p>
           </Link>
-          <Link href="/contact">
-            <p className={isActive("/contact")}>Contact</p>
+          <Link href="/top-deals">
+            <p className={isActive("/top-deals")}>Top Deals</p>
           </Link>
 
           {/* Profile Icon */}
@@ -97,11 +97,11 @@ const Navbar = () => {
           <Link href="/products">
             <p className={`${isActive("/products")}`}>Products</p>
           </Link>
-          <Link href="/about">
-            <p className={`${isActive("/about")}`}>About</p>
+          <Link href="/new-arrivals">
+            <p className={`${isActive("/new-arrivals")}`}>New Arrivals</p>
           </Link>
-          <Link href="/contact">
-            <p className={`${isActive("/contact")}`}>Contact</p>
+          <Link href="/top-deals">
+            <p className={`${isActive("/top-deals")}`}>Top Deals</p>
           </Link>
 
           {/* Profile Icon */}
