@@ -5,10 +5,10 @@ import Link from "next/link";
 
 const ProductPage = () => {
   const categories = [
-    { name: "Earrings", image: "/images/categories/earrings.jpg" },
-    { name: "Necklaces", image: "/images/categories/necklace.jpg" },
-    { name: "Bracelets", image: "/images/categories/bracelet.jpg" },
-    { name: "Rings", image: "/images/categories/ring.jpg" },
+    { name: "Earrings", image: "/images/products/earrings.jpg" },
+    { name: "Necklaces", image: "/images/products/necklace.jpg" },
+    { name: "Bracelets", image: "/images/products/bracelets.jpg" },
+    { name: "Rings", image: "/images/products/ring.jpg" },
   ];
 
   const products = [
@@ -30,7 +30,7 @@ const ProductPage = () => {
       {/* Banner Image */}
       <div
         className="w-full h-[50vh] bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/banner.jpg')" }}
+        style={{ backgroundImage: "url('/images/home-section/Rectangle30.png')" }}
       >
         <div className="h-full bg-black bg-opacity-30 flex items-center justify-center">
           <h1 className="text-4xl font-bold text-lightBackground">Our Products</h1>
@@ -38,12 +38,12 @@ const ProductPage = () => {
       </div>
 
       {/* Category Strip */}
-      <div className="bg-primary py-8">
+      <div className="bg-primary py-2">
         <div className="container mx-auto flex justify-around items-center">
           {categories.map((category, index) => (
             <div key={index} className="text-center">
               <div className="w-20 h-20 mx-auto rounded-full overflow-hidden border-2 border-lightBackground">
-                <img src={category.image} alt={category.name} className="w-full h-full object-cover" />
+                <img src={category.image} alt={category.name} className="w-full h-full transition transform hover:scale-110 duration-700 object-cover" />
               </div>
               <p className="text-white mt-2 font-bold">{category.name}</p>
             </div>

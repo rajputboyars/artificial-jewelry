@@ -1,6 +1,7 @@
-import Navbar from "@/components/Navbar";
+// import Navbar from "@/components/Navbar";
 import "./globals.css";
 import Footer from "@/components/Footer";
+import Navbar1 from "@/components/navbar/Navbar1";
 
 export const metadata = {
   title: "Create Next App",
@@ -13,7 +14,7 @@ export default function RootLayout({ children }) {
       <body
         className="bg-lightBackground text-primary"
       >
-        <Navbar/>
+        <Navbar1/>
         {children}
         <Footer />
       </body>

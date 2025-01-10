@@ -8,7 +8,7 @@ const AboutPage = () => {
       {/* Banner Section */}
       <div
         className="w-full h-[50vh] bg-cover bg-center flex items-center justify-center"
-        style={{ backgroundImage: "url('/images/about-banner.jpg')" }}
+        style={{ backgroundImage: "url('/images/home-section/Rectangle30.png')" }}
       >
         <h1 className="text-4xl font-bold text-lightBackground bg-black bg-opacity-40 px-4 py-2 rounded">
           About Us
