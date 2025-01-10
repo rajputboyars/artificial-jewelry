@@ -3,23 +3,16 @@
 
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Link from "next/link";
-
+import PRODUCT_DATA from "@/data";
 const ProductPage = () => {
-  const categories = [
-    { name: "Earrings", image: "/images/products/earrings.jpg" },
-    { name: "Necklaces", image: "/images/products/necklaces.jpg" },
-    { name: "Bracelets", image: "/images/products/bracelets.jpg" },
-    { name: "Rings", image: "/images/products/ring.jpg" },
-  ];
-
-    const products = [
-        { id: 1, name: "Elegant Earrings", price: "$25", image: "/images/products/earrings.jpg" },
-        { id: 2, name: "Stylish Necklace", price: "$50", image: "/images/products/necklaces.jpg" },
-        { id: 3, name: "Beautiful Bracelet", price: "$30", image: "/images/products/bracelets.jpg" },
-        { id: 4, name: "Classic Ring", price: "$20", image: "/images/products/ring.jpg" },
-    ];
 
     const filters = {
+        categories: [
+            { name: "Earrings", image: "/images/products/earrings.jpg" },
+            { name: "Necklaces", image: "/images/products/necklaces.jpg" },
+            { name: "Bracelets", image: "/images/products/bracelets.jpg" },
+            { name: "Rings", image: "/images/products/ring.jpg" },
+        ],
         sizes: ["Small", "Medium", "Large"],
         prices: ["Under $20", "$20-$50", "Over $50"],
         colors: ["Gold", "Silver", "Rose Gold"],
@@ -42,16 +35,16 @@ const ProductPage = () => {
                 <div className="z-10 absolute w-full h-full bg-black bg-opacity-30 items-center justify-center
                 flex flex-col">
                     <h1 className="text-4xl font-bold text-lightBackground">Our Products</h1>
-                    <Breadcrumbs/>
+                    <Breadcrumbs />
                 </div>
             </div>
 
             {/* Category Strip */}
             <div className="bg-primary py-2">
                 <div className="container mx-auto flex justify-around items-center">
-                    {categories.map((category, index) => (
-                        <div key={index} className="text-center">
-                            <div className="w-20 h-20 mx-auto rounded-full overflow-hidden border-2 border-lightBackground">
+                    {filters.categories.map((category, index) => (
+                        <div key={index} className="text-center flex gap-2">
+                            <div className="w-10 h-10 mx-auto rounded-full overflow-hidden border-2 border-lightBackground">
                                 <img src={category.image} alt={category.name} className="w-full h-full transition transform hover:scale-110 duration-700 object-cover" />
                             </div>
                             <p className="text-white mt-2 font-bold">{category.name}</p>
@@ -120,24 +113,27 @@ const ProductPage = () => {
                 </aside>
 
                 {/* Product Cards */}
-                <div className="w-3/4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {products.map((product) => (
-                        <div key={product.id} className="bg-lightBackground p-4 rounded shadow">
-                            <img
-                                src={product.image}
-                                alt={product.name}
-                                className="w-full h-48 object-cover rounded"
-                            />
-                            <h2 className="text-xl font-bold text-primary mt-4">{product.name}</h2>
-                            <p className="text-grayDark">{product.price}</p>
-                            <Link
-                                href={`/products/${product.id}`}
-                                className="inline-block bg-primary text-lightBackground px-4 py-2 rounded mt-4 hover:bg-secondary transition"
-                            >
-                                View Details
-                            </Link>
-                        </div>
-                    ))}
+                <div className="w-3/4">
+                    <h2 className="pb-4 font-semibold text-xl">All Products</h2>
+                    <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {PRODUCT_DATA.map((product) => (
+                            <div key={product.id} className="bg-lightBackground p-4 rounded shadow">
+                                <img
+                                    src={product.thumbnail}
+                                    alt={product.name}
+                                    className="w-full h-48 object-cover rounded"
+                                />
+                                <h2 className="text-xl font-bold text-primary mt-4">{product.name}</h2>
+                                <p className="text-grayDark">{product.price}</p>
+                                <Link
+                                    href={`/products/${product.id}`}
+                                    className="inline-block bg-primary text-lightBackground px-4 py-2 rounded mt-4 hover:bg-secondary transition"
+                                >
+                                    View Details
+                                </Link>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

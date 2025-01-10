@@ -45,16 +45,16 @@ const CartPage = () => {
             {cartItems.length === 0 ? (
                 <p className="text-center text-grayDark">Your cart is empty!</p>
             ) : (
-                <div className="space-y-8">
+                <div className="space-x-8 flex">
                     {/* Cart Items */}
-                    <div className="bg-lightBackground rounded shadow p-4 grid md:grid-cols-5 gap-7">
+                    <div className="w-full md:w-2/3 bg-lightBackground rounded shadow p-4 gap-7">
                         {cartItems.map((item) => (
                             <div
                                 key={item.id}
-                                className="flex flex-col items-center justify-between rounded-sm shadow-md border-grayLight pb-4 mb-4 relative"
+                                className="flex items-center justify-between border rounded-sm shadow-md border-grayLight p-4 mb-4 relative"
                             >
                                 {/* Product Details */}
-                                <div className="flex flex-col">
+                                <div className="flex gap-8">
                                     <div className="w-full h-32">
                                         <img
                                             src={item.image}
@@ -62,55 +62,79 @@ const CartPage = () => {
                                             className="w-full h-full object-cover rounded"
                                         />
                                     </div>
-                                    <div>
-                                        <h2 className="text-xl font-bold text-primary">
+                                    <div className="flex flex-col justify-start gap-2">
+                                        <h2 className="text-xl font-bold text-nowrap text-primary">
                                             {item.name}
                                         </h2>
                                         <p className="text-grayDark">${item.price}</p>
+                                        <div className="w-full flex justify-between max-w-[120px]">
+                                            <button
+                                                onClick={() => updateQuantity(item.id, -1)}
+                                                className="px-4 py-2 bg-secondary text-lightBackground rounded hover:bg-primary"
+                                            >
+                                                -
+                                            </button>
+                                            <span className="text-lg">{item.quantity}</span>
+                                            <button
+                                                onClick={() => updateQuantity(item.id, 1)}
+                                                className="px-4 py-2 bg-secondary text-lightBackground rounded hover:bg-primary"
+                                            >
+                                                +
+                                            </button>
+                                        </div>
                                     </div>
+
                                 </div>
 
                                 {/* Quantity Controls */}
-                                <div className="flex items-center space-x-4">
+                                <div className="flex flex-col gap-8 items-center space-x-4 max-w-[120px] w-full">
+
+                                    {/* Remove Item */}
                                     <button
-                                        onClick={() => updateQuantity(item.id, -1)}
-                                        className="px-4 py-2 bg-secondary text-lightBackground rounded hover:bg-primary"
+                                        onClick={() => removeItem(item.id)}
+                                        className="text-red-600 px-1 rounded-sm hover:text-red-800"
                                     >
-                                        -
-                                    </button>
-                                    <span className="text-lg">{item.quantity}</span>
-                                    <button
-                                        onClick={() => updateQuantity(item.id, 1)}
-                                        className="px-4 py-2 bg-secondary text-lightBackground rounded hover:bg-primary"
-                                    >
-                                        +
+                                        Remove
                                     </button>
                                 </div>
 
-                                {/* Remove Item */}
-                                <button
-                                    onClick={() => removeItem(item.id)}
-                                    className="bg-red-600 text-white px-1 rounded-sm hover:text-red-800 absolute top-1 right-1"
-                                >
-                                    X
-                                </button>
                             </div>
                         ))}
                     </div>
 
                     {/* Summary Section */}
-                    <div className="bg-lightBackground p-6 rounded shadow flex justify-between items-center">
-                        <div className="flex gap-2">
-                            <h2 className="text-xl font-bold text-primary">Total:</h2>
-                            <p className="text-2xl font-bold text-secondary">
-                                ${calculateTotal()}
-                            </p>
+                    <div className="w-full md:w-1/3 bg-lightBackground p-6 rounded shadow flex justify-between items-center">
+                        <div className="flex gap-2 flex-col border max-w-[400px] w-full p-4 rounded-lg shadow-lg">
+                            <div className="flex justify-between">
+                                <h2 className="text-xl font-bold text-primary">Subtotal:</h2>
+                                <p className="text-lg">
+                                    ${calculateTotal()}
+                                </p>
+                            </div>
+                            <div className="flex justify-between">
+                                <h2 className="text-xl font-bold text-primary">Items:</h2>
+                                <p className="text-lg">
+                                    {cartItems.length}
+                                </p>
+                            </div>
+                            <div className="flex justify-between">
+                                <h2 className="text-xl font-bold text-primary">Shipping:</h2>
+                                <p className="text-lg">
+                                    Free
+                                </p>
+                            </div>
+                            <div className="flex justify-between">
+                                <h2 className="text-xl font-bold text-primary">Total:</h2>
+                                <p className="text-lg">
+                                    {calculateTotal()}
+                                </p>
+                            </div>
+                            <Link href={"/checkout"} className="w-full">
+                                <button className="bg-primary w-full text-lightBackground px-6 py-2 rounded-lg hover:bg-secondary transition">
+                                    Proceed to Checkout
+                                </button>
+                            </Link>
                         </div>
-                        <Link href={"/checkout"}>
-                            <button className="bg-primary text-lightBackground px-6 py-3 rounded hover:bg-secondary transition">
-                                Proceed to Checkout
-                            </button>
-                        </Link>
                     </div>
                 </div>
             )}
