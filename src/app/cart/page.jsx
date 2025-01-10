@@ -45,24 +45,24 @@ const CartPage = () => {
             {cartItems.length === 0 ? (
                 <p className="text-center text-grayDark">Your cart is empty!</p>
             ) : (
-                <div className="space-x-8 flex">
+                <div className="space-y-4 md:space-x-8 flex flex-col md:flex-row">
                     {/* Cart Items */}
                     <div className="w-full md:w-2/3 bg-lightBackground rounded shadow p-4 gap-7">
                         {cartItems.map((item) => (
                             <div
                                 key={item.id}
-                                className="flex items-center justify-between border rounded-sm shadow-md border-grayLight p-4 mb-4 relative"
+                                className="flex flex-col md:flex-row w-full items-center justify-between border rounded-sm shadow-md border-grayLight p-4 mb-4 relative"
                             >
                                 {/* Product Details */}
-                                <div className="flex gap-8">
-                                    <div className="w-full h-32">
+                                <div className="flex flex-col md:flex-row max-md:w-full gap-8">
+                                    <div className="w-full md:w-40 h-80 md:h-32">
                                         <img
                                             src={item.image}
                                             alt={item.name}
                                             className="w-full h-full object-cover rounded"
                                         />
                                     </div>
-                                    <div className="flex flex-col justify-start gap-2">
+                                    <div className="flex flex-col justify-start  gap-2">
                                         <h2 className="text-xl font-bold text-nowrap text-primary">
                                             {item.name}
                                         </h2>
@@ -87,12 +87,12 @@ const CartPage = () => {
                                 </div>
 
                                 {/* Quantity Controls */}
-                                <div className="flex flex-col gap-8 items-center space-x-4 max-w-[120px] w-full">
+                                <div className="max-md:w-full">
 
                                     {/* Remove Item */}
                                     <button
                                         onClick={() => removeItem(item.id)}
-                                        className="text-red-600 px-1 rounded-sm hover:text-red-800"
+                                        className="text-red-600 pt-2 rounded-sm hover:text-red-800"
                                     >
                                         Remove
                                     </button>
@@ -103,7 +103,7 @@ const CartPage = () => {
                     </div>
 
                     {/* Summary Section */}
-                    <div className="w-full md:w-1/3 bg-lightBackground p-6 rounded shadow flex justify-between items-center">
+                    <div className="w-full md:w-1/3 bg-lightBackground p-4 rounded shadow flex justify-between items-center">
                         <div className="flex gap-2 flex-col border max-w-[400px] w-full p-4 rounded-lg shadow-lg">
                             <div className="flex justify-between">
                                 <h2 className="text-xl font-bold text-primary">Subtotal:</h2>

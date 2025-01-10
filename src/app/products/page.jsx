@@ -56,9 +56,8 @@ const ProductPage = () => {
             {/* Main Content */}
             <div className="container mx-auto px-4 py-12 flex gap-8">
                 {/* Left Sidebar */}
-                <aside className="w-1/4 bg-lightBackground p-4 rounded shadow">
+                <aside className="max-md:hidden md:w-1/4 bg-lightBackground p-4 rounded shadow">
                     <h2 className="text-xl font-bold text-primary mb-4">Filters</h2>
-
                     {/* Sizes */}
                     <div className="mb-6">
                         <h3 className="text-lg font-bold text-grayDark mb-2">Sizes</h3>
@@ -113,7 +112,7 @@ const ProductPage = () => {
                 </aside>
 
                 {/* Product Cards */}
-                <div className="w-3/4">
+                <div className="w-full md:w-3/4">
                     <h2 className="pb-4 font-semibold text-xl">All Products</h2>
                     <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         {PRODUCT_DATA.map((product) => (

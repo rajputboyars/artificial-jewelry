@@ -16,7 +16,7 @@ const CategoryComponent = () => {
   return (
     <div className="p-6">
       <h2 className="text-3xl text-center font-bold mb-6">Categories</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
         {categories.map((category, index) => (
           <div
             key={index}
@@ -25,7 +25,7 @@ const CategoryComponent = () => {
             <img
               src={category.image}
               alt={category.name}
-              className="h-40 w-full rounded-md object-cover mb-4"
+              className="md:h-40 w-full aspect-square rounded-md object-cover mb-4"
             />
             <div className="flex flex-col justify-start relative">
               <h3 className="absolute text-lg font-semibold mb-4 capitalize translate-x-0 group-hover:translate-x-28 duration-500 transition-all group-hover:opacity-0">{category.name}</h3>

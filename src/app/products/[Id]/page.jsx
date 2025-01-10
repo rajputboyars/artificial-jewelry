@@ -43,7 +43,7 @@ const ProductDetailPage = () => {
         </div>
 
         {/* Details Section */}
-        <div className="md:w-1/2 ">
+        <div className="w-full md:w-1/2 ">
           <div className="space-y-4 max-w-[400px] bg-white p-4 rounded-md shadow-md mx-auto">
             <h1 className="text-3xl font-bold text-primary">{product.title}</h1>
             <p className="text-lg text-grayDark">{product.description}</p>
