@@ -1,5 +1,6 @@
 "use client"
 import PRODUCT_DATA from "@/data";
+import Link from "next/link";
 
 const CategoryComponent = () => {
 
@@ -33,11 +34,11 @@ const CategoryComponent = () => {
             </div>
             <div className="flex flex-col justify-start relative">
               <h3 className="absolute text-lg font-semibold mb-4 capitalize translate-x-0 group-hover:translate-x-28 duration-500 transition-all group-hover:opacity-0">{category.name}</h3>
-              <button
+              <Link href={`/products/category/${category.name}`}
                 className="flex gap-2 items-center py-1 px-4 font-semibold rounded-lg text-nowrap -translate-x-28 opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:translate-x-0"
               >
                 View All...<span>👉</span>
-              </button>
+              </Link>
             </div>
           </div>
         ))}

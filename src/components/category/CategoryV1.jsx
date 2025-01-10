@@ -9,12 +9,12 @@ const CategoryV1 = () => {
     {
       id: "traditional",
       title: "Traditional Jewelry",
-      image: "/images/categories/traditional.jpg",
+      image: "/images/products/bracelets.jpg",
     },
     {
       id: "party",
       title: "Party Jewelry",
-      image: "/images/categories/party.jpg",
+      image: "/images/products/bracelets.jpg",
     },
   ];
 

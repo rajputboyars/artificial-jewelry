@@ -2,6 +2,7 @@
 import "./globals.css";
 import Footer from "@/components/Footer";
 import Navbar1 from "@/components/navbar/Navbar1";
+import ReduxProvider from "./providers/ReduxProvider";
 
 export const metadata = {
   title: "Create Next App",
@@ -10,14 +11,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className="bg-lightBackground text-primary"
-      >
-        <Navbar1/>
-        {children}
-        <Footer />
-      </body>
-    </html>
+    <ReduxProvider>
+      <html lang="en">
+        <body
+          className="bg-lightBackground text-primary"
+        >
+          <Navbar1 />
+          {children}
+          <Footer />
+        </body>
+      </html>
+    </ReduxProvider>
   );
 }
