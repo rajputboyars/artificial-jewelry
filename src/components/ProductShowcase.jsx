@@ -45,13 +45,13 @@ const ProductShowcase = () => {
 
   return (
     <section className="py-16 bg-white">
+      <h2 className="text-3xl text-center font-bold mb-6">Best Selling Products</h2>
       <div className="container mx-auto px-4 space-y-12">
         {products.map((product, index) => (
           <div
             key={product.id}
-            className={`flex flex-col ${
-              index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-            } items-center space-y-8 md:space-y-0 md:space-x-8`}
+            className={`flex flex-col ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+              } items-center space-y-8 md:space-y-0 md:space-x-8`}
           >
             {/* Product Image */}
             <div className="md:w-1/2">

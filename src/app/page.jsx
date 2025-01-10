@@ -1,18 +1,24 @@
 import Banner from "@/components/Banner";
-import FeaturedProducts from "@/components/FeaturedProducts";
+import FeaturedProducts from "@/components/FeaturedProducts/FeaturedProducts";
 import FullWidthImageSection from "@/components/FullWidthImageSection";
 import GetUpdates from "@/components/GetUpdates";
 import ProductShowcase from "@/components/ProductShowcase";
 import CustomSplitSection from "@/components/CustomSplitSection";
 import Testimonials from "@/components/Testimonials";
 import CategorySection from "@/components/CategorySection";
+import Banner1 from "@/components/banner/Banner1";
+import CategoryComponent from "@/components/categories/CategoryComponent";
+import FeaturedProducts1 from "@/components/FeaturedProducts/FeaturedProducts1";
 
 export default function Home() {
   return (
     <>
       <main>
-        <Banner />
-        <CategorySection/>
+        <Banner1 />
+        <CategoryComponent/>
+        <FeaturedProducts1 />
+        <FullWidthImageSection/>
+        {/* <CategorySection/> */}
         <ProductShowcase/>  
         <CustomSplitSection
           imagePosition="right" // Image on the right
@@ -35,8 +41,6 @@ export default function Home() {
           linkText="Shop Now"
           linkHref="/exclusive-products"
         />
-        <FullWidthImageSection/>
-        <FeaturedProducts />
         <Testimonials />
         <GetUpdates/>
       </main>
