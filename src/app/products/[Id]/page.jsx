@@ -1,36 +1,12 @@
 "use client";
 
+import PRODUCT_DATA from "@/data";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 
 const ProductDetailPage = () => {
   const { Id } = useParams();
-
-  const products = {
-    1: {
-      name: "Elegant Earrings",
-      price: "$25",
-      description: "These elegant earrings are perfect for any occasion.",
-      image: "/images/products/earrings.jpg",
-      smallImages: [
-        "/images/products/earrings.jpg",
-        "/images/products/earrings2.jpg",
-        "/images/products/earrings3.jpg",
-      ],
-    },
-    2: {
-      name: "Stylish Necklace",
-      price: "$50",
-      description: "This stylish necklace adds a touch of elegance to your outfit.",
-      image: "/images/products/necklace.jpg",
-      smallImages: [
-        "/images/products/necklace.jpg",
-        "/images/products/necklace2.jpg",
-        "/images/products/necklace3.jpg",
-      ],
-    },
-  };
-
-  const product = products[Id];
+  const product = PRODUCT_DATA[(Id -1)];
 
   if (!product) {
     return (
@@ -40,8 +16,8 @@ const ProductDetailPage = () => {
     );
   }
 
-  const similarProducts = Object.values(products).filter(
-    (p) => p.name !== product.name
+  const similarProducts = Object.values(PRODUCT_DATA).filter(
+    (p) => p.category === product.category && p.id !== product.id
   );
 
   return (
@@ -49,14 +25,14 @@ const ProductDetailPage = () => {
       {/* Product Details Section */}
       <div className="flex flex-col md:flex-row items-start gap-8">
         {/* Image Section */}
-        <div className="md:w-1/2">
+        <div className="md:w-1/2 flex flex-col justify-center items-center">
           <img
-            src={product.image}
-            alt={product.name}
-            className="w-full h-auto rounded-lg shadow-lg"
+            src={product.thumbnail}
+            alt={product.title}
+            className="w-[400px] h-[400px] rounded-lg shadow-lg object-cover"
           />
-          <div className="flex gap-4 mt-4">
-            {product.smallImages.map((src, index) => (
+          <div className="flex w-full gap-4 mt-4">
+            {product.images.map((src, index) => (
               <img
                 key={index}
                 src={src}
@@ -66,50 +42,89 @@ const ProductDetailPage = () => {
             ))}
           </div>
         </div>
+
         {/* Details Section */}
-        <div className="md:w-1/2 space-y-4">
-          <h1 className="text-3xl font-bold text-primary">{product.name}</h1>
-          <p className="text-lg text-grayDark">{product.description}</p>
-          <p className="text-2xl font-bold text-secondary">{product.price}</p>
-          <button className="bg-primary text-lightBackground px-6 py-3 rounded hover:bg-secondary transition">
-            Add to Cart
-          </button>
+        <div className="w-full md:w-1/2 ">
+          <div className="space-y-4 max-w-[400px] bg-white p-4 rounded-md shadow-md mx-auto">
+            <h1 className="text-3xl font-bold text-primary">{product.title}</h1>
+            <p className="text-lg text-grayDark">{product.description}</p>
+            <p className="text-xl font-medium text-gray-700">
+              Category: <span className="capitalize">{product.category}</span>
+            </p>
+            <p className="text-2xl font-bold text-secondary">
+              ${product.price.toFixed(2)}{" "}
+              <span className="text-sm text-gray-500">
+                ({product.discountPercentage}% off)
+              </span>
+            </p>
+            <div className="flex gap-4 flex-col md:flex-row">
+              <p className="flex-1 border p-2 shadow-sm rounded-md text-sm text-gray-600">
+                <strong>Stock:</strong>{" "}
+                {product.stock > 0 ? `${product.stock} available` : "Out of stock"}
+              </p>
+              <p className="flex-1 border p-2 shadow-sm rounded-md text-sm text-gray-600">
+                <strong>Brand:</strong> {product.brand}
+              </p>
+            </div>
+            {/* <p className="text-sm text-gray-600">
+            <strong>SKU:</strong> {product.sku}
+          </p> */}
+            <div className="flex gap-4 flex-col md:flex-row">
+              <p className="flex-1 border p-2 shadow-sm rounded-md text-sm text-gray-600">
+                <strong>Weight:</strong> {product.weight} kg
+              </p>
+              <p className="flex-1 border p-2 shadow-sm rounded-md text-sm text-gray-600">
+                <strong>Dimensions:</strong>{" "}
+                {`${product.dimensions.width} x ${product.dimensions.height} x ${product.dimensions.depth}`}
+              </p>
+            </div>
+            <p className="text-sm text-gray-600">
+              <strong>Warranty:</strong> {product.warrantyInformation}
+            </p>
+            <div className="flex flex-col md:flex-row gap-4">
+              <button className="bg-primary flex-1 text-lightBackground px-6 py-2 rounded-lg hover:bg-secondary transition">
+                Add to Cart
+              </button>
+              <button className="bg-primary flex-1 text-lightBackground px-6 py-2 rounded-lg hover:bg-secondary transition">
+                Buy Now
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Similar Products Section */}
       <div>
-        <h2 className="text-2xl font-bold text-primary mb-6">View Similar Products</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {similarProducts.map((product, index) => (
-            <div key={index} className="bg-lightBackground p-4 rounded shadow">
+        <h2 className="text-2xl font-bold text-primary mb-6">Similar Products</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+          {similarProducts.slice(0, 4).map((product) => (
+            <Link href={`/products/${product.id}`} key={product.id} className="bg-lightBackground p-4 rounded shadow">
               <img
-                src={product.image}
-                alt={product.name}
+                src={product.thumbnail}
+                alt={product.title}
                 className="w-full h-40 object-cover rounded"
               />
               <h3 className="text-lg font-bold text-primary mt-4">
-                {product.name}
+                {product.title}
               </h3>
-              <p className="text-grayDark">{product.price}</p>
-            </div>
+              <p className="text-secondary font-bold">${product.price}</p>
+            </Link>
           ))}
         </div>
       </div>
 
       {/* Product Description Section */}
       <div className="space-y-12">
-        {[...Array(3)].map((_, index) => (
+        {product.images.map((image, index) => (
           <div
             key={index}
-            className={`flex flex-col md:flex-row items-center gap-8 ${
-              index % 2 === 1 ? "md:flex-row-reverse" : ""
-            }`}
+            className={`flex flex-col md:flex-row items-center gap-8 ${index % 2 === 1 ? "md:flex-row-reverse" : ""
+              }`}
           >
             <img
-              src={product.image}
+              src={image}
               alt={`Detailed ${index + 1}`}
-              className="md:w-1/2 w-full h-auto rounded-lg shadow-lg"
+              className="md:w-1/2 w-full h-auto md:h-[400px] rounded-lg shadow-lg"
             />
             <div className="md:w-1/2 space-y-4">
               <h3 className="text-xl font-bold text-primary">
@@ -127,19 +142,21 @@ const ProductDetailPage = () => {
       {/* Product Reviews Section */}
       <div>
         <h2 className="text-2xl font-bold text-primary mb-6 text-center">Customer Reviews</h2>
-        <div className=" grid grid-cols-5 gap-4">
-          <div className="bg-lightBackground p-4 rounded shadow">
-            <p className="text-grayDark">
-              "I absolutely love these earrings! They are stunning and perfect
-              for every occasion." - <strong>Jane Doe</strong>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {product.reviews.length > 0 ? (
+            product.reviews.map((review, index) => (
+              <div key={index} className="bg-lightBackground p-4 rounded shadow">
+                <p className="text-grayDark">{review.text}</p>
+                <p className="text-sm text-primary mt-2">
+                  - <strong>{review.author}</strong>
+                </p>
+              </div>
+            ))
+          ) : (
+            <p className="text-center text-gray-600">
+              No reviews yet for this product.
             </p>
-          </div>
-          <div className="bg-lightBackground p-4 rounded shadow">
-            <p className="text-grayDark">
-              "Such a beautiful product! The quality is amazing, and it arrived
-              on time." - <strong>John Smith</strong>
-            </p>
-          </div>
+          )}
         </div>
       </div>
     </section>

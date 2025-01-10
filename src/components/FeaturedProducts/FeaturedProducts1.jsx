@@ -1,10 +1,11 @@
 import PRODUCT_DATA from "@/data";
 import Link from "next/link";
+
 import ProductCard from "../ProductCard";
 
 const FeaturedProducts1 = () => {
     // Example: Limit to the first 8 products as featured
-    const featuredProducts = PRODUCT_DATA.slice(0, 8);
+    const featuredProducts = PRODUCT_DATA.slice(0, 4);
 
     return (
         <div className="p-6">

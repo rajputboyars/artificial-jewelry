@@ -1,9 +1,7 @@
 "use client"
 import PRODUCT_DATA from "@/data";
-import { useRouter } from "next/navigation";
 
 const CategoryComponent = () => {
-  const router = useRouter();
 
   // Extract unique categories from PRODUCT_DATA
   const categories = [
@@ -18,12 +16,13 @@ const CategoryComponent = () => {
   return (
     <div className="p-6">
       <h2 className="text-3xl text-center font-bold mb-6">Categories</h2>
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
         {categories.map((category, index) => (
           <div
             key={index}
             className="group bg-white shadow rounded-lg translate-y-0 hover:-translate-y-1 duration-500 transition-all hover:shadow-lg p-4 flex flex-col items-center max-md:items-center"
           >
+
             <div className="relative">
               <div className="absolute rounded-md w-0 h-full bg-black opacity-50 transition-all duration-700 group-hover:w-full bottom-0 left-0" />
               <img
