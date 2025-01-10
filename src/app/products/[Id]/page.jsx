@@ -1,13 +1,16 @@
 "use client";
 
+import { addToCart } from "@/app/reducers/cartSlice";
+import ProductCard from "@/components/ProductCard";
 import PRODUCT_DATA from "@/data";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useDispatch } from "react-redux";
 
 const ProductDetailPage = () => {
   const { Id } = useParams();
   const product = PRODUCT_DATA[(Id -1)];
-
+ const dispatch = useDispatch()
   if (!product) {
     return (
       <p className="text-center text-xl text-red-500 min-h-screen flex justify-center items-center">
@@ -20,12 +23,17 @@ const ProductDetailPage = () => {
     (p) => p.category === product.category && p.id !== product.id
   );
 
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(product)); // Dispatch the addToCart action with the product
+  };
+
   return (
     <section className="container mx-auto px-4 py-12 space-y-16">
       {/* Product Details Section */}
       <div className="flex flex-col md:flex-row items-start gap-8">
         {/* Image Section */}
-        <div className="md:w-1/2 flex flex-col justify-center items-center">
+        <div className="w-full md:w-1/2 flex flex-col justify-center items-center">
           <img
             src={product.thumbnail}
             alt={product.title}
@@ -82,7 +90,7 @@ const ProductDetailPage = () => {
               <strong>Warranty:</strong> {product.warrantyInformation}
             </p>
             <div className="flex flex-col md:flex-row gap-4">
-              <button className="bg-primary flex-1 text-lightBackground px-6 py-2 rounded-lg hover:bg-secondary transition">
+              <button onClick={handleAddToCart} className="bg-primary flex-1 text-lightBackground px-6 py-2 rounded-lg hover:bg-secondary transition">
                 Add to Cart
               </button>
               <button className="bg-primary flex-1 text-lightBackground px-6 py-2 rounded-lg hover:bg-secondary transition">
@@ -98,17 +106,7 @@ const ProductDetailPage = () => {
         <h2 className="text-2xl font-bold text-primary mb-6">Similar Products</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {similarProducts.slice(0, 4).map((product) => (
-            <Link href={`/products/${product.id}`} key={product.id} className="bg-lightBackground p-4 rounded shadow">
-              <img
-                src={product.thumbnail}
-                alt={product.title}
-                className="w-full h-40 object-cover rounded"
-              />
-              <h3 className="text-lg font-bold text-primary mt-4">
-                {product.title}
-              </h3>
-              <p className="text-secondary font-bold">${product.price}</p>
-            </Link>
+            <ProductCard key={product.id} product={product}/>
           ))}
         </div>
       </div>
@@ -124,7 +122,7 @@ const ProductDetailPage = () => {
             <img
               src={image}
               alt={`Detailed ${index + 1}`}
-              className="md:w-1/2 w-full h-auto md:h-[400px] rounded-lg shadow-lg"
+              className="md:w-1/4 w-full h-auto aspect-square rounded-lg shadow-lg"
             />
             <div className="md:w-1/2 space-y-4">
               <h3 className="text-xl font-bold text-primary">
