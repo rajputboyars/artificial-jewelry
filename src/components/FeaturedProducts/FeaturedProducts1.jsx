@@ -2,12 +2,12 @@ import PRODUCT_DATA from "@/data";
 
 const FeaturedProducts1 = () => {
     // Example: Limit to the first 8 products as featured
-    const featuredProducts = PRODUCT_DATA.slice(0, 8);
+    const featuredProducts = PRODUCT_DATA.slice(0, 4);
 
     return (
         <div className="p-6">
             <h2 className="text-3xl text-center font-bold mb-6">Featured Products</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
                 {featuredProducts.map((product) => (
                     <div
                         key={product.id}
@@ -16,17 +16,17 @@ const FeaturedProducts1 = () => {
                         <img
                             src={product.thumbnail}
                             alt={product.title}
-                            className="h-40 w-full object-cover mb-4 rounded-lg"
+                            className="md:h-40 w-full max-md:aspect-square object-cover mb-4 rounded-lg"
                         />
                         <h3 className="text-lg font-semibold text-center mb-2">
                             {product.title}
                         </h3>
-                        <div className="flex w-full  items-center justify-between">
+                        <div className="flex w-full flex-col md:flex-row items-center justify-between">
                             <p className="text-gray-600 font-medium">
                                 ${product.price.toFixed(2)}
                             </p>
                             <button
-                                className="bg-blue-500 text-white py-2 px-4 rounded-lg flex items-center gap-2 hover:bg-blue-600"
+                                className="bg-blue-500 max-md:w-full justify-center max-md:mt-2 text-white py-2 px-4 rounded-lg flex items-center gap-2 hover:bg-blue-600"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
