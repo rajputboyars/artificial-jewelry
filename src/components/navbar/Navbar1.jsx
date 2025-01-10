@@ -102,23 +102,24 @@ const Navbar1 = () => {
             </div>
 
             {/* Mobile Menu */}
-            {isMenuOpen && (
-                <div className="md:hidden bg-primary text-lightBackground space-y-4 p-4">
-                    <Link href="/">
-                        <p className={`${isActive("/")}`}>Home</p>
-                    </Link>
-                    <Link href="/products">
-                        <p className={`${isActive("/products")}`}>Products</p>
-                    </Link>
-                    <Link href="/about">
-                        <p className={`${isActive("/about")}`}>About</p>
-                    </Link>
-                    <Link href="/contact">
-                        <p className={`${isActive("/contact")}`}>Contact</p>
-                    </Link>
-
+            {/* {isMenuOpen && ( */}
+                <div className={`md:hidden `}>
+                    <div className={`bg-primary fixed right-0 w-full h-screen text-lightBackground flex flex-col gap-4 p-4 transition-all duration-700 ${isMenuOpen ? "w-screen " : "w-0 translate-x-40 "}`}>
+                        <Link onClick={()=>setIsMenuOpen((prev)=>!prev)} href="/">
+                            <p className={`${isActive("/")}`}>Home</p>
+                        </Link>
+                        <Link onClick={()=>setIsMenuOpen((prev)=>!prev)} href="/products">
+                            <p className={`${isActive("/products")}`}>Products</p>
+                        </Link>
+                        <Link onClick={()=>setIsMenuOpen((prev)=>!prev)} href="/about">
+                            <p className={`${isActive("/about")}`}>About</p>
+                        </Link>
+                        <Link onClick={()=>setIsMenuOpen((prev)=>!prev)} href="/contact">
+                            <p className={`${isActive("/contact")}`}>Contact</p>
+                        </Link>
+                    </div>
                 </div>
-            )}
+            {/* )} */}
         </nav>
     );
 };

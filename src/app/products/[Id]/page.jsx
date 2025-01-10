@@ -1,6 +1,7 @@
 "use client";
 
 import PRODUCT_DATA from "@/data";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 
 const ProductDetailPage = () => {
@@ -97,7 +98,7 @@ const ProductDetailPage = () => {
         <h2 className="text-2xl font-bold text-primary mb-6">Similar Products</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {similarProducts.slice(0, 4).map((product) => (
-            <div key={product.id} className="bg-lightBackground p-4 rounded shadow">
+            <Link href={`/products/${product.id}`} key={product.id} className="bg-lightBackground p-4 rounded shadow">
               <img
                 src={product.thumbnail}
                 alt={product.title}
@@ -107,7 +108,7 @@ const ProductDetailPage = () => {
                 {product.title}
               </h3>
               <p className="text-secondary font-bold">${product.price}</p>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

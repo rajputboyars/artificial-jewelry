@@ -41,7 +41,7 @@ const ProductPage = () => {
 
             {/* Category Strip */}
             <div className="bg-primary py-2">
-                <div className="container mx-auto flex justify-around items-center">
+                <div className="container mx-auto flex justify-around items-center max-md:w-screen max-md:px-4 max-md:gap-4 max-md:overflow-scroll">
                     {filters.categories.map((category, index) => (
                         <div key={index} className="text-center flex gap-2">
                             <div className="w-10 h-10 mx-auto rounded-full overflow-hidden border-2 border-lightBackground">
