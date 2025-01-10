@@ -29,6 +29,12 @@ const Navbar1 = () => {
                         <Link href="/products">
                             <p className={isActive("/products")}>Products</p>
                         </Link>
+                        <Link href="/top-deals">
+                            <p className={isActive("/contact")}>Top Deals</p>
+                        </Link>
+                        <Link href="/new-arrivals">
+                            <p className={isActive("/contact")}>New Arrivals</p>
+                        </Link>
                         <Link href="/about">
                             <p className={isActive("/about")}>About</p>
                         </Link>

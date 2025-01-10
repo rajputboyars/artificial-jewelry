@@ -50,11 +50,12 @@ const ProductShowcase = () => {
         {products.map((product, index) => (
           <div
             key={product.id}
-            className={`flex flex-col ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+            className={`flex group flex-col ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
               } items-center space-y-8 md:space-y-0 md:space-x-8`}
           >
             {/* Product Image */}
-            <div className="md:w-1/2">
+            <div className="md:w-1/2 relative">
+              <div className="absolute w-0 h-full bg-black opacity-50 transition-all duration-700 group-hover:w-full group-hover:h-full bottom-0 left-0" />
               <img
                 src={product.image}
                 alt={product.name}

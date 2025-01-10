@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import ProductCard from "@/components/ProductCard";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Pagination from "@/components/Pagination";
+import PRODUCT_DATA from "@/data";
 
 const NewArrivals = () => {
   const [products, setProducts] = useState([]);
@@ -15,9 +16,10 @@ const NewArrivals = () => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        const response = await fetch("https://dummyjson.com/products");
-        const data = await response.json();
-        setProducts(data.products || []);
+        // const response = await fetch("https://dummyjson.com/products");
+        // const data = await response.json();
+        // setProducts(data.products || []);
+        setProducts([...PRODUCT_DATA]);
       } catch (error) {
         console.error("Error fetching products:", error);
         setProducts([]);
@@ -49,7 +51,7 @@ const NewArrivals = () => {
         ) : (
           <>
             {/* Products Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mt-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  xl:grid-cols-4 gap-6 mt-8">
               {currentProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
