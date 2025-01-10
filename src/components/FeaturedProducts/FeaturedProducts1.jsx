@@ -1,4 +1,5 @@
 import PRODUCT_DATA from "@/data";
+import Link from "next/link";
 
 const FeaturedProducts1 = () => {
     // Example: Limit to the first 8 products as featured
@@ -9,9 +10,10 @@ const FeaturedProducts1 = () => {
             <h2 className="text-3xl text-center font-bold mb-6">Featured Products</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
                 {featuredProducts.map((product) => (
-                    <div
+                    <Link
                         key={product.id}
                         className="bg-white shadow rounded-lg p-4 flex flex-col items-center"
+                        href={`/products/${product.id}`}
                     >
                         <img
                             src={product.thumbnail}
@@ -44,7 +46,7 @@ const FeaturedProducts1 = () => {
                                 </svg>
                             </button>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>
