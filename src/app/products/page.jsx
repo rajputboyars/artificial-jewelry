@@ -7,15 +7,15 @@ import Link from "next/link";
 const ProductPage = () => {
   const categories = [
     { name: "Earrings", image: "/images/products/earrings.jpg" },
-    { name: "Necklaces", image: "/images/products/necklace.jpg" },
+    { name: "Necklaces", image: "/images/products/necklaces.jpg" },
     { name: "Bracelets", image: "/images/products/bracelets.jpg" },
     { name: "Rings", image: "/images/products/ring.jpg" },
   ];
 
     const products = [
         { id: 1, name: "Elegant Earrings", price: "$25", image: "/images/products/earrings.jpg" },
-        { id: 2, name: "Stylish Necklace", price: "$50", image: "/images/products/necklace.jpg" },
-        { id: 3, name: "Beautiful Bracelet", price: "$30", image: "/images/products/bracelet.jpg" },
+        { id: 2, name: "Stylish Necklace", price: "$50", image: "/images/products/necklaces.jpg" },
+        { id: 3, name: "Beautiful Bracelet", price: "$30", image: "/images/products/bracelets.jpg" },
         { id: 4, name: "Classic Ring", price: "$20", image: "/images/products/ring.jpg" },
     ];
 

@@ -21,11 +21,11 @@ const ProductDetailPage = () => {
       name: "Stylish Necklace",
       price: "$50",
       description: "This stylish necklace adds a touch of elegance to your outfit.",
-      image: "/images/products/necklace.jpg",
+      image: "/images/products/necklaces.jpg",
       smallImages: [
-        "/images/products/necklace.jpg",
-        "/images/products/necklace2.jpg",
-        "/images/products/necklace3.jpg",
+        "/images/products/necklaces.jpg",
+        "/images/products/necklaces.jpg",
+        "/images/products/necklaces.jpg",
       ],
     },
   };

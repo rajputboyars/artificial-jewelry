@@ -16,7 +16,7 @@ const CartPage = () => {
             id: 2,
             name: "Stylish Necklace",
             price: 50,
-            image: "/images/products/necklace.jpg",
+            image: "/images/products/necklaces.jpg",
             quantity: 1,
         },
     ]);

@@ -1,9 +1,7 @@
 "use client"
 import PRODUCT_DATA from "@/data";
-import { useRouter } from "next/navigation";
 
 const CategoryComponent = () => {
-  const router = useRouter();
 
   // Extract unique categories from PRODUCT_DATA
   const categories = [
@@ -18,7 +16,7 @@ const CategoryComponent = () => {
   return (
     <div className="p-6">
       <h2 className="text-3xl text-center font-bold mb-6">Categories</h2>
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         {categories.map((category, index) => (
           <div
             key={index}
