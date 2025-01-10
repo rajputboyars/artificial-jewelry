@@ -22,17 +22,21 @@ const CategoryComponent = () => {
             key={index}
             className="group bg-white shadow rounded-lg translate-y-0 hover:-translate-y-1 duration-500 transition-all hover:shadow-lg p-4 flex flex-col items-center max-md:items-center"
           >
-            <img
-              src={category.image}
-              alt={category.name}
-              className="md:h-40 w-full aspect-square rounded-md object-cover mb-4"
-            />
+
+            <div className="relative">
+              <div className="absolute rounded-md w-0 h-full bg-black opacity-50 transition-all duration-700 group-hover:w-full bottom-0 left-0" />
+              <img
+                src={category.image}
+                alt={category.name}
+                className="h-auto w-full aspect-square rounded-md object-cover"
+              />
+            </div>
             <div className="flex flex-col justify-start relative">
               <h3 className="absolute text-lg font-semibold mb-4 capitalize translate-x-0 group-hover:translate-x-28 duration-500 transition-all group-hover:opacity-0">{category.name}</h3>
               <button
                 className="flex gap-2 items-center py-1 px-4 font-semibold rounded-lg text-nowrap -translate-x-28 opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:translate-x-0"
               >
-                View All<span>👉</span>
+                View All...<span>👉</span>
               </button>
             </div>
           </div>

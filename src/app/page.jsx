@@ -9,12 +9,14 @@ import CategorySection from "@/components/CategorySection";
 import Banner1 from "@/components/banner/Banner1";
 import CategoryComponent from "@/components/categories/CategoryComponent";
 import FeaturedProducts1 from "@/components/FeaturedProducts/FeaturedProducts1";
+import CategoryV1 from "@/components/category/CategoryV1";
 
 export default function Home() {
   return (
     <>
       <main>
         <Banner1 />
+        <CategoryV1/>
         <CategoryComponent/>
         <FeaturedProducts1 />
         <FullWidthImageSection/>
