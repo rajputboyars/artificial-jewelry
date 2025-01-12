@@ -1,20 +1,22 @@
-import Banner from "@/components/Banner";
-import FeaturedProducts from "@/components/FeaturedProducts/FeaturedProducts";
 import FullWidthImageSection from "@/components/FullWidthImageSection";
 import GetUpdates from "@/components/GetUpdates";
 import ProductShowcase from "@/components/ProductShowcase";
 import CustomSplitSection from "@/components/CustomSplitSection";
 import Testimonials from "@/components/Testimonials";
-import CategorySection from "@/components/CategorySection";
 import Banner1 from "@/components/banner/Banner1";
 import CategoryComponent from "@/components/categories/CategoryComponent";
 import FeaturedProducts1 from "@/components/FeaturedProducts/FeaturedProducts1";
 import CategoryV1 from "@/components/category/CategoryV1";
 import ComboAndGiftPacks from "@/components/ComboAndGiftPacks ";
+import Head from "next/head";
 
 export default function Home() {
   return (
     <>
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+        <title>ARS Store</title>
+      </Head>
       <main>
         <Banner1 />
         <CategoryV1 />
