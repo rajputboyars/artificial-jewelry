@@ -29,7 +29,7 @@ const FeaturedProducts = () => {
   return (
     <section className="py-16 bg-lightBackground">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-primary mb-8 text-center">
+        <h2 className="text-3xl font-bold text-textPrimary mb-8 text-center">
           Featured Products
         </h2>
         <div className="grid gap-8 md:grid-cols-3">
@@ -45,7 +45,7 @@ const FeaturedProducts = () => {
                 height={300}
                 className="rounded-md w-full"
               />
-              <h3 className="text-lg font-bold text-primary mt-4">
+              <h3 className="text-lg font-bold text-textPrimary mt-4">
                 {product.name}
               </h3>
               <p className="text-grayDark">{product.price}</p>

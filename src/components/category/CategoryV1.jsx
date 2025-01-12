@@ -9,12 +9,12 @@ const CategoryV1 = () => {
     {
       id: "traditional",
       title: "Traditional Jewelry",
-      image: "/images/products/bracelets.jpg",
+      image: "/images/products/treditional-jewelary.jpeg",
     },
     {
       id: "party",
       title: "Party Jewelry",
-      image: "/images/products/bracelets.jpg",
+      image: "/images/products/party-jewelary.avif",
     },
   ];
 
@@ -24,7 +24,7 @@ const CategoryV1 = () => {
 
   return (
     <section className="container mx-auto px-4 py-12">
-      <h2 className="text-3xl font-bold text-primary mb-8 text-center">
+      <h2 className="text-3xl font-bold text-textPrimary mb-8 text-center">
         Explore Categories
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -47,6 +47,11 @@ const CategoryV1 = () => {
                 {category.title}
               </h3>
             </div>
+            <h3 className="absolute bottom-0 w-full p-4 text-black translate-x-0 translate-y-0 transition-all duration-700 group-hover:translate-x-40 group-hover:-translate-y-24 group-hover:text-white text-xl font-bold opacity-100 group-hover:opacity-0 ">
+              {category.title}
+            </h3>
+            {/* <div className="p-4">
+            </div> */}
           </div>
         ))}
       </div>

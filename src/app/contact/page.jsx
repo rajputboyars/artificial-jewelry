@@ -16,7 +16,6 @@ const ContactPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Form Submitted:", formData);
         setFormData({ name: "", email: "", message: "" }); // Clear form
     };
 
@@ -41,7 +40,7 @@ const ContactPage = () => {
             <div className="container mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Contact Form */}
                 <div className="bg-lightBackground p-8 rounded shadow">
-                    <h2 className="text-3xl font-bold text-primary mb-4">Get in Touch</h2>
+                    <h2 className="text-3xl font-bold text-textPrimary mb-4">Get in Touch</h2>
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
                             {/* <label
@@ -108,7 +107,7 @@ const ContactPage = () => {
 
                 {/* Contact Details */}
                 <div className="bg-lightBackground p-8 rounded shadow space-y-4">
-                    <h2 className="text-3xl font-bold text-primary mb-4">
+                    <h2 className="text-3xl font-bold text-textPrimary mb-4">
                         Contact Details
                     </h2>
                     <div>

@@ -5,7 +5,7 @@ const FullWidthImageSection = () => {
   return (
     <div>
 
-      <section className="relative w-full h-[500px]">
+      <section className="relative container mx-auto w-full h-[500px]">
         {/* Image Section */}
         <img
           src="/images/home-section/Rectangle30.png" // Replace with your image path

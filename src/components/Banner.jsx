@@ -10,7 +10,7 @@ const Banner = () => {
       <div className="container mx-auto px-4 py-16 flex flex-col-reverse md:flex-row items-center">
         {/* Text Content */}
         <div className="text-center md:text-left md:w-1/2 space-y-6">
-          <h1 className="text-4xl md:text-5xl font-bold text-primary">
+          <h1 className="text-4xl md:text-5xl font-bold text-textPrimary">
             Discover Exquisite Artificial Jewelry
           </h1>
           <p className="text-grayDark text-lg">

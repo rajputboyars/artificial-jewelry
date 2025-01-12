@@ -40,7 +40,7 @@ const TopDeals = () => {
     <div className="bg-lightBackground min-h-screen px-4 py-8">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
-        <h1 className="text-primary text-3xl font-bold mb-4">Top Deals</h1>
+        <h1 className="text-textPrimary text-3xl font-bold mb-4">Top Deals</h1>
 
         {/* Breadcrumbs */}
         <Breadcrumbs />
@@ -51,7 +51,7 @@ const TopDeals = () => {
         ) : (
           <>
             {/* Products Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-4 gap-6 mt-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 xl:grid-cols-4 gap-6 mt-8">
               {currentProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}

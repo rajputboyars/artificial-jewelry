@@ -8,7 +8,7 @@ const FeaturedProducts1 = () => {
     const featuredProducts = PRODUCT_DATA.slice(0, 4);
 
     return (
-        <div className="p-6">
+        <div className="p-6 container mx-auto">
             <h2 className="text-3xl text-center font-bold mb-6">Featured Products</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
                 {featuredProducts.map((product) => (

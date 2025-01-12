@@ -25,7 +25,7 @@ const Testimonials = () => {
   return (
     <section className="py-16 bg-grayLight">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-primary mb-8 text-center">
+        <h2 className="text-3xl font-bold text-textPrimary mb-8 text-center">
           What Our Customers Say
         </h2>
         <div className="grid gap-8 md:grid-cols-3">

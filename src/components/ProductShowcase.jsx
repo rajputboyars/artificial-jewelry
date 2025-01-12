@@ -65,7 +65,7 @@ const ProductShowcase = () => {
 
             {/* Product Details */}
             <div className="md:w-1/2 space-y-4 text-center md:text-left">
-              <h2 className="text-2xl font-bold text-primary">{product.name}</h2>
+              <h2 className="text-2xl font-bold text-textPrimary">{product.name}</h2>
               <p className="text-grayDark">{product.description}</p>
               <p className="text-lg font-semibold text-secondary">{product.price}</p>
               {/* Size Options */}
@@ -77,7 +77,7 @@ const ProductShowcase = () => {
                       name={`size-${product.id}`}
                       value={size}
                       onChange={() => handleSizeChange(product.id, size)}
-                      className="form-radio text-primary"
+                      className="form-radio text-textPrimary"
                     />
                     <span className="text-grayDark">{size}</span>
                   </label>

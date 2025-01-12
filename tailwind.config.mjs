@@ -8,11 +8,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#0c192b", // Dark blue
-        secondary: "#1b2a40", // Navy blue
-        grayDark: "#8b8b8b", // Dark gray
-        grayLight: "#a6a6a6", // Light gray
-        lightBackground: "#f4f7fb", // Light background
+        primary: "#F0C987", // Muted Gold
+        secondary: "#E1E1E1", // Pearl White
+        accent: "#B6A39E", // Pale Mauve
+        background: "#FFFFFF", // Clean White
+        textPrimary: "#2C2C2C", // Deep Gray
+        textSecondary: "#6B6B6B", // Medium Gray
       },
     },
   },
