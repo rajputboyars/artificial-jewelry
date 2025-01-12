@@ -133,18 +133,16 @@ const CheckoutPage = () => {
         {steps.map((step, index) => (
           <div key={index} className="flex items-center w-full">
             <div
-              className={`w-8 h-8 flex items-center justify-center rounded-full relative ${
-                index + 1 === currentStep
-                  ? "bg-secondary text-primary font-bold"
+              className={`w-8 h-8 flex items-center justify-center rounded-full relative ${index + 1 === currentStep
+                  ? "bg-secondary text-textPrimary font-bold"
                   : "bg-gray-200 text-gray-600"
-              }`}
+                }`}
             >
-                <span className={`absolute ${index % 2 == 0 ? "-top-8" :"top-8"} text-nowrap max-md:hidden`}>{step}</span>
-              <span className={` ${
-                index + 1 === currentStep
+              <span className={`absolute ${index % 2 == 0 ? "-top-8" : "top-8"} text-nowrap max-md:hidden`}>{step}</span>
+              <span className={` ${index + 1 === currentStep
                   ? "bg-secondary text-white"
                   : "bg-gray-200 text-gray-600"
-              }`}>{index + 1}</span>
+                }`}>{index + 1}</span>
             </div>
             {index < steps.length - 1 && (
               <div className="w-full h-1 bg-gray-300 flex-1"></div>

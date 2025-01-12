@@ -10,18 +10,20 @@ import Banner1 from "@/components/banner/Banner1";
 import CategoryComponent from "@/components/categories/CategoryComponent";
 import FeaturedProducts1 from "@/components/FeaturedProducts/FeaturedProducts1";
 import CategoryV1 from "@/components/category/CategoryV1";
+import ComboAndGiftPacks from "@/components/ComboAndGiftPacks ";
 
 export default function Home() {
   return (
     <>
       <main>
         <Banner1 />
-        <CategoryV1/>
-        <CategoryComponent/>
+        <CategoryV1 />
+        <CategoryComponent />
         <FeaturedProducts1 />
-        <FullWidthImageSection/>
+        <ComboAndGiftPacks />
+        <FullWidthImageSection />
         {/* <CategorySection/> */}
-        <ProductShowcase/>  
+        <ProductShowcase />
         <CustomSplitSection
           imagePosition="right" // Image on the right
           backgroundColor="bg-primary" // Custom background color
@@ -30,7 +32,7 @@ export default function Home() {
           title="Exclusive Jewelry Collection"
           description="Our exclusive collection of jewelry pieces, designed for every special occasion."
           linkText="Shop Now"
-          linkHref="/exclusive-products"
+          linkHref="/products"
         />
         <CustomSplitSection
           imagePosition="left" // Image on the right
@@ -38,13 +40,13 @@ export default function Home() {
           imageSrc="/images/home-section/image4.png"
           imageRotate={0} // Rotate image 5 degrees
           title="Exclusive Jewelry Collection"
-          titleColor="text-primary"
+          titleColor="text-textPrimary"
           description="Our exclusive collection of jewelry pieces, designed for every special occasion."
           linkText="Shop Now"
-          linkHref="/exclusive-products"
+          linkHref="/products"
         />
         <Testimonials />
-        <GetUpdates/>
+        <GetUpdates />
       </main>
     </>
   );

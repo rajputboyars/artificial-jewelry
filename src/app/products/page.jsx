@@ -4,6 +4,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Link from "next/link";
 import PRODUCT_DATA from "@/data";
 import { useState } from "react";
+import ProductCard from "@/components/ProductCard";
 
 const ProductPage = () => {
     const [filteredData, setFilteredData] = useState([...PRODUCT_DATA]);
@@ -91,7 +92,7 @@ const ProductPage = () => {
             <div className="container mx-auto px-4 py-12 flex gap-8">
                 {/* Left Sidebar */}
                 <aside className="hidden md:block md:w-1/4 bg-lightBackground p-4 rounded shadow">
-                    <h2 className="text-xl font-bold text-primary mb-4">Filters</h2>
+                    <h2 className="text-xl font-bold text-textPrimary mb-4">Filters</h2>
                     {filterArray.map((filter, index) => (
                         <div key={index} className="mb-6">
                             <h3 className="text-lg font-bold text-grayDark mb-2 capitalize">{filter.key}</h3>
@@ -139,7 +140,7 @@ const ProductPage = () => {
                                 {isFilterOpen ? "Filters" : "Filters"}
                             </button>
                             {isFilterOpen && (
-                                <div className="bg-lightBackground p-4 rounded absolute -right-4 sm:-right-10 sm:w-[95vw] w-[98vw] shadow">
+                                <div className="bg-lightBackground p-4 rounded absolute -right-4 sm:-right-10 sm:w-[95vw] w-[98vw] shadow z-20 bg-white">
                                     {filterArray.map((filter, index) => (
                                         <div key={index} className="mb-6">
                                             <h3 className="text-lg font-bold text-grayDark mb-2 capitalize">
@@ -179,23 +180,24 @@ const ProductPage = () => {
                         </div>
                     </div>
 
-                    <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8">
                         {filteredData.map((product) => (
-                            <div key={product.id} className="bg-lightBackground p-4 rounded shadow">
-                                <img
-                                    src={product.thumbnail}
-                                    alt={product.title}
-                                    className="w-full h-auto aspect-square object-cover rounded"
-                                />
-                                <h2 className="text-xl font-bold text-primary mt-4">{product.title}</h2>
-                                <p className="text-grayDark">${product.price}</p>
-                                <Link
-                                    href={`/products/${product.id}`}
-                                    className="inline-block bg-primary text-lightBackground px-4 py-2 rounded mt-4 hover:bg-secondary transition"
-                                >
-                                    View Details
-                                </Link>
-                            </div>
+                            // <div key={product.id} className="bg-lightBackground p-4 rounded shadow">
+                            //     <img
+                            //         src={product.thumbnail}
+                            //         alt={product.title}
+                            //         className="w-full h-auto aspect-square object-cover rounded"
+                            //     />
+                            //     <h2 className="text-xl font-bold text-textPrimary mt-4">{product.title}</h2>
+                            //     <p className="text-grayDark">${product.price}</p>
+                            //     <Link
+                            //         href={`/products/${product.id}`}
+                            //         className="inline-block bg-primary text-lightBackground px-4 py-2 rounded mt-4 hover:bg-secondary transition"
+                            //     >
+                            //         View Details
+                            //     </Link>
+                            // </div>
+                            <ProductCard key={product.id} product={product}/>
                         ))}
                     </div>
                 </div>

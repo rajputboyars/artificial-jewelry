@@ -45,7 +45,7 @@ const GetUpdates = () => {
           />
           <button
             type="submit"
-            className="bg-primary text-lightBackground px-6 py-2 rounded hover:bg-lightBackground hover:text-primary transition"
+            className="bg-primary text-lightBackground px-6 py-2 rounded hover:bg-lightBackground hover:text-textPrimary transition"
           >
             Subscribe
           </button>

@@ -4,15 +4,15 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const CustomSplitSection = ({ 
-  imagePosition = "left", 
-  backgroundColor = "bg-lightBackground", 
-  imageSrc, 
-  titleColor="text-white",
-  imageAlt = "Jewelry Showcase", 
-  imageRotate = 0, 
-  title = "Elevate Your Style with Our Collection", 
-  description = "Discover the perfect blend of elegance and affordability with our handcrafted artificial jewelry. Each piece is designed to bring out your unique style and personality.", 
+const CustomSplitSection = ({
+  imagePosition = "left",
+  backgroundColor = "bg-lightBackground",
+  imageSrc,
+  titleColor = "text-white",
+  imageAlt = "Jewelry Showcase",
+  imageRotate = 0,
+  title = "Elevate Your Style with Our Collection",
+  description = "Discover the perfect blend of elegance and affordability with our handcrafted artificial jewelry. Each piece is designed to bring out your unique style and personality.",
   linkText = "Browse Collection",
   linkHref = "/products"
 }) => {
@@ -43,7 +43,7 @@ const CustomSplitSection = ({
           <p className="text-grayDark text-lg">{description}</p>
           <Link
             href={linkHref}
-            className="bg-primary text-lightBackground px-6 py-3 w-fit rounded hover:bg-lightBackground hover:text-primary transition hover:border-primary border-2"
+            className="bg-primary text-lightBackground px-6 py-3 w-fit rounded hover:bg-lightBackground hover:text-textPrimary transition hover:border-primary border-2"
           >
             {linkText}
           </Link>

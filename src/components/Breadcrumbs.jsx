@@ -10,7 +10,7 @@ const Breadcrumbs = () => {
     <nav className="text-grayDark text-sm mb-4" aria-label="Breadcrumb">
       <ol className="list-none p-0 inline-flex">
         <li className="flex items-center">
-          <Link href="/" className="text-primary hover:underline">
+          <Link href="/" className="text-textPrimary hover:underline">
             Home
           </Link>
           {pathArray.length > 0 && (
@@ -27,7 +27,7 @@ const Breadcrumbs = () => {
                 <span className="text-grayDark capitalize">{path}</span>
               ) : (
                 <>
-                  <Link href={href} className="text-primary hover:underline capitalize">
+                  <Link href={href} className="text-textPrimary hover:underline capitalize">
                     {path}
                   </Link>
                   <span className="mx-2 text-grayLight">/</span>

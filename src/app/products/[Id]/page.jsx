@@ -9,8 +9,8 @@ import { useDispatch } from "react-redux";
 
 const ProductDetailPage = () => {
   const { Id } = useParams();
-  const product = PRODUCT_DATA[(Id -1)];
- const dispatch = useDispatch()
+  const product = PRODUCT_DATA[(Id - 1)];
+  const dispatch = useDispatch()
   if (!product) {
     return (
       <p className="text-center text-xl text-red-500 min-h-screen flex justify-center items-center">
@@ -54,7 +54,7 @@ const ProductDetailPage = () => {
         {/* Details Section */}
         <div className="w-full md:w-1/2 ">
           <div className="space-y-4 max-w-[400px] bg-white p-4 rounded-md shadow-md mx-auto">
-            <h1 className="text-3xl font-bold text-primary">{product.title}</h1>
+            <h1 className="text-3xl font-bold text-textPrimary">{product.title}</h1>
             <p className="text-lg text-grayDark">{product.description}</p>
             <p className="text-xl font-medium text-gray-700">
               Category: <span className="capitalize">{product.category}</span>
@@ -103,10 +103,10 @@ const ProductDetailPage = () => {
 
       {/* Similar Products Section */}
       <div>
-        <h2 className="text-2xl font-bold text-primary mb-6">Similar Products</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <h2 className="text-2xl font-bold text-textPrimary mb-6">Similar Products</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
           {similarProducts.slice(0, 4).map((product) => (
-            <ProductCard key={product.id} product={product}/>
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </div>
@@ -125,7 +125,7 @@ const ProductDetailPage = () => {
               className="md:w-1/4 w-full h-auto aspect-square rounded-lg shadow-lg"
             />
             <div className="md:w-1/2 space-y-4">
-              <h3 className="text-xl font-bold text-primary">
+              <h3 className="text-xl font-bold text-textPrimary">
                 High-Quality Material
               </h3>
               <p className="text-grayDark">
@@ -139,13 +139,13 @@ const ProductDetailPage = () => {
 
       {/* Product Reviews Section */}
       <div>
-        <h2 className="text-2xl font-bold text-primary mb-6 text-center">Customer Reviews</h2>
+        <h2 className="text-2xl font-bold text-textPrimary mb-6 text-center">Customer Reviews</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {product.reviews.length > 0 ? (
             product.reviews.map((review, index) => (
               <div key={index} className="bg-lightBackground p-4 rounded shadow">
                 <p className="text-grayDark">{review.text}</p>
-                <p className="text-sm text-primary mt-2">
+                <p className="text-sm text-textPrimary mt-2">
                   - <strong>{review.author}</strong>
                 </p>
               </div>

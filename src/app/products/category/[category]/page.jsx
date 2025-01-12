@@ -5,6 +5,7 @@ import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import PRODUCT_DATA from "@/data";
 import { useParams } from "next/navigation";
+import ProductCard from "@/components/ProductCard";
 
 // Utility to capitalize words
 const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
@@ -46,29 +47,30 @@ const CategoryPage = () => {
                 <h2 className="pb-4 font-semibold text-xl capitalize">
                     {capitalize(category)} Products
                 </h2>
-                <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8">
                     {filteredProducts.length > 0 ? (
                         filteredProducts.map((product) => (
-                            <div
-                                key={product.id}
-                                className="bg-lightBackground p-4 rounded shadow"
-                            >
-                                <img
-                                    src={product.thumbnail}
-                                    alt={product.title}
-                                    className="w-full h-auto aspect-square object-cover rounded"
-                                />
-                                <h2 className="text-xl font-bold text-primary mt-4">
-                                    {product.title}
-                                </h2>
-                                <p className="text-grayDark">${product.price}</p>
-                                <Link
-                                    href={`/products/${product.id}`}
-                                    className="inline-block bg-primary text-lightBackground px-4 py-2 rounded mt-4 hover:bg-secondary transition"
-                                >
-                                    View Details
-                                </Link>
-                            </div>
+                            // <div
+                            //     key={product.id}
+                            //     className="bg-lightBackground p-4 rounded shadow"
+                            // >
+                            //     <img
+                            //         src={product.thumbnail}
+                            //         alt={product.title}
+                            //         className="w-full h-auto aspect-square object-cover rounded"
+                            //     />
+                            //     <h2 className="text-xl font-bold text-textPrimary mt-4">
+                            //         {product.title}
+                            //     </h2>
+                            //     <p className="text-grayDark">${product.price}</p>
+                            //     <Link
+                            //         href={`/products/${product.id}`}
+                            //         className="inline-block bg-primary text-lightBackground px-4 py-2 rounded mt-4 hover:bg-secondary transition"
+                            //     >
+                            //         View Details
+                            //     </Link>
+                            // </div>
+                            <ProductCard key={product.id} product={product}/>
                         ))
                     ) : (
                         <p className="text-grayDark">No products found in this category.</p>
