@@ -15,6 +15,7 @@ const Wishlist = () => {
   const handleAddToCart = (product) => {
     dispatch(addToCart( product));
   };
+console.log(wishlistItems,"wishlistItems");
 
   return (
     <div className="h-full py-6 pb-36 px-4">
