@@ -4,13 +4,18 @@ import { createSlice } from '@reduxjs/toolkit';
 
 // Function to load cart data from local storage
 const loadCartFromLocalStorage = () => {
+  if (typeof window !== "undefined") {
   const storedCart = localStorage.getItem('cart');
   return storedCart ? JSON.parse(storedCart) : { items: [] };
+  }
+  return { items: [] }; // Fallback for SSR
 };
 
 // Function to save cart data to local storage
 const saveCartToLocalStorage = (state) => {
+  if (typeof window !== "undefined") {
   localStorage.setItem('cart', JSON.stringify(state));
+  }
 };
 
 // Initial state for the cart
