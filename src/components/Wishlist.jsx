@@ -3,6 +3,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromWishlist } from "@/app/reducers/wishlistSlice";
 import { addToCart } from "@/app/reducers/cartSlice";
+import ProductCard from "./ProductCard";
 
 const Wishlist = () => {
   const dispatch = useDispatch();
@@ -17,66 +18,18 @@ const Wishlist = () => {
 
   return (
     <div className="h-full py-6 pb-36 px-4">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6">Your Wishlist</h1>
+      <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">Your Wishlist</h1>
       {wishlistItems.length === 0 ? (
-        <p className="text-gray-600">Your wishlist is empty.</p>
+       <div className=" flex flex-col items-center justify-center min-h-[60vh]">
+       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-24">
+         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+       </svg>
+       <p className="text-center text-grayDark">Your wishlist is empty!</p>
+     </div>
       ) : (
-        <div className="w-full h-full flex flex-col bg-lightBackground rounded shadow p-4 gap-7 overflow-y-scroll" style={{scrollbarWidth:"none"}}>
-          {wishlistItems.map((item) => (
-            <div
-            key={item.id}
-            className="flex flex-col md:flex-row w-full items-center justify-between border rounded-sm shadow-md border-grayLight p-4 mb-4 relative"
-          >
-            {/* Product Details */}
-            <div className="flex flex-col md:flex-row max-md:w-full gap-8">
-              <div className="w-full md:w-40 h-80 md:h-32">
-                <img
-                  src={item.thumbnail}
-                  alt={item.name}
-                  className="w-full h-full object-cover rounded"
-                />
-              </div>
-              <div className="flex flex-col justify-start gap-2">
-                <h2 className="text-xl font-bold text-nowrap text-textPrimary">
-                  {item.title}
-                </h2>
-                <p className="text-grayDark">${item.price}</p>
-                <div className="w-full flex justify-between max-w-[120px]">
-                  <button
-                    onClick={() => handleQuantityUpdate(item.id, -1)}
-                    className="px-4 py-2 bg-secondary text-lightBackground rounded hover:bg-primary"
-                  >
-                    -
-                  </button>
-                  <span className="text-lg">{item.minimumOrderQuantity}</span>
-                  <button
-                    onClick={() => handleQuantityUpdate(item.id, 1)}
-                    className="px-4 py-2 bg-secondary text-lightBackground rounded hover:bg-primary"
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Quantity Controls */}
-            <div className="max-md:w-full flex flex-col">
-              {/* add Item to cart */}
-              <button
-                onClick={() => handleAddToCart(item)}
-                className="text-red-600 pt-2 rounded-sm hover:text-red-800"
-                >
-                Add to cart
-              </button>
-                {/* Remove Item */}
-              <button
-                onClick={() => handleRemove(item.id)}
-                className="text-red-600 pt-2 rounded-sm hover:text-red-800"
-              >
-                Remove
-              </button>
-            </div>
-          </div>
+        <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8" style={{scrollbarWidth:"none"}}>
+          {wishlistItems.map((product) => (
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       )}

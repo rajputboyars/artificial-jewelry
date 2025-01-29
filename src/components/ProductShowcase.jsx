@@ -1,47 +1,19 @@
 // src/app/components/ProductShowcase.jsx
 "use client";
 
+import { addToCart } from "@/app/reducers/cartSlice";
+import PRODUCT_DATA from "@/data";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 const ProductShowcase = () => {
-  const products = [
-    {
-      id: 1,
-      name: "Gold Plated Necklace",
-      description: "A stunning gold-plated necklace to elevate your style.",
-      price: "$49.99",
-      image: "/images/home-section/image1.png",
-    },
-    {
-      id: 2,
-      name: "Elegant Bracelet",
-      description: "A handcrafted bracelet perfect for any occasion.",
-      price: "$29.99",
-      image: "/images/home-section/image2.png",
-    },
-    {
-      id: 3,
-      name: "Diamond Studded Earrings",
-      description: "Beautiful diamond-studded earrings to shine bright.",
-      price: "$59.99",
-      image: "/images/home-section/image3.png",
-    },
-  ];
+  const products =  PRODUCT_DATA.slice(0, 3);
+  const dispatch = useDispatch()
 
-  const [selectedSizes, setSelectedSizes] = useState({});
-
-  const handleSizeChange = (productId, size) => {
-    setSelectedSizes((prev) => ({ ...prev, [productId]: size }));
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product)); // Dispatch the addToCart action with the product
   };
-
-  const handleAddToCart = (productId) => {
-    const selectedSize = selectedSizes[productId];
-    if (!selectedSize) {
-      alert("Please select a size before adding to cart.");
-      return;
-    }
-    alert(`Product ID: ${productId} added to cart with size: ${selectedSize}`);
-  };
+ 
 
   return (
     <section className="py-16 bg-white">
@@ -57,35 +29,20 @@ const ProductShowcase = () => {
             <div className="md:w-1/2 relative">
               <div className="absolute w-0 h-full bg-black opacity-50 transition-all duration-700 group-hover:w-full group-hover:h-full bottom-0 left-0" />
               <img
-                src={product.image}
+                src={product.thumbnail}
                 alt={product.name}
-                className="w-[50%] m-auto rounded-lg "
+                className="w-[50%] md:w-full m-auto aspect-square md:aspect-video rounded-lg "
               />
             </div>
 
             {/* Product Details */}
             <div className="md:w-1/2 space-y-4 text-center md:text-left">
-              <h2 className="text-2xl font-bold text-textPrimary">{product.name}</h2>
+              <h2 className="text-2xl font-bold text-textPrimary">{product.title}</h2>
               <p className="text-grayDark">{product.description}</p>
               <p className="text-lg font-semibold text-secondary">{product.price}</p>
-              {/* Size Options */}
-              <div className="flex justify-center md:justify-start items-center space-x-4">
-                {["S", "M", "L"].map((size) => (
-                  <label key={size} className="flex items-center space-x-2">
-                    <input
-                      type="radio"
-                      name={`size-${product.id}`}
-                      value={size}
-                      onChange={() => handleSizeChange(product.id, size)}
-                      className="form-radio text-textPrimary"
-                    />
-                    <span className="text-grayDark">{size}</span>
-                  </label>
-                ))}
-              </div>
               {/* Add to Cart Button */}
               <button
-                onClick={() => handleAddToCart(product.id)}
+                onClick={() => handleAddToCart(product)}
                 className="mt-4 bg-primary text-lightBackground px-6 py-2 rounded hover:bg-secondary transition"
               >
                 Add to Cart

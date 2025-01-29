@@ -1,10 +1,11 @@
 "use client";
 
 import Wishlist from "@/components/Wishlist";
+import Link from "next/link";
 import { useState } from "react";
 
 const ProfilePage = () => {
-  const [activeTab, setActiveTab] = useState("details");
+ 
 
   const user = {
     name: "John Doe",
@@ -38,38 +39,18 @@ const ProfilePage = () => {
         {/* Tabs */}
         <div className="flex justify-center md:justify-start gap-6 border-b border-grayLight pb-4 mb-8 w-full">
           <button
-            className={`text-lg font-semibold px-4 py-2 ${activeTab === "details"
-              ? "text-textPrimary border-b-2 border-primary"
-              : "text-grayDark"
-              }`}
-            onClick={() => setActiveTab("details")}
+            className={`text-lg font-semibold px-4 py-2 text-textPrimary border-b-2 border-primary`}
+           
           >
             Personal Details
           </button>
-          <button
-            className={`text-lg font-semibold px-4 py-2 ${activeTab === "orders"
-              ? "text-textPrimary border-b-2 border-primary"
-              : "text-grayDark"
-              }`}
-            onClick={() => setActiveTab("orders")}
-          >
-            Orders
-          </button>
-          <button
-            className={`text-lg font-semibold px-4 py-2 ${activeTab === "wishlist"
-              ? "text-textPrimary border-b-2 border-primary"
-              : "text-grayDark"
-              }`}
-            onClick={() => setActiveTab("wishlist")}
-          >
-            Wishlist
-          </button>
+
         </div>
 
         {/* Tab Content */}
-        {activeTab === "details" && (
-          <div>
-            <h2 className="text-2xl font-bold text-textPrimary mb-6">Personal Details</h2>
+ 
+          <div className="space-y-6">
+            <h2 className="text-2xl font-bold text-textPrimary">Personal Details</h2>
             <div className="space-y-4">
               <p className="text-grayDark">
                 <strong>Name:</strong> {user.name}
@@ -81,44 +62,18 @@ const ProfilePage = () => {
                 <strong>Bio:</strong> {user.bio}
               </p>
             </div>
+            <Link href={"/wishlist"}
+              className="text-grayDark border inline-block py-2 px-4 rounded-full mr-4 bg-primary"
+            >
+              Wishlist
+            </Link>
+            <Link href={"/order"}
+              className="text-grayDark border inline-block py-2 px-4 rounded-full bg-primary"
+            >
+              Orders
+            </Link>
           </div>
-        )}
-
-        {activeTab === "orders" && (
-          <div>
-            <h2 className="text-2xl font-bold text-textPrimary mb-6">Your Orders</h2>
-            {user.orders.length > 0 ? (
-              <table className="w-full bg-lightBackground border rounded-lg">
-                <thead>
-                  <tr className="bg-primary text-lightBackground">
-                    <th className="py-3 px-4">Product</th>
-                    <th className="py-3 px-4">Date</th>
-                    <th className="py-3 px-4">Status</th>
-                    <th className="py-3 px-4">Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {user.orders.map((order) => (
-                    <tr key={order.id} className="border-t">
-                      <td className="py-3 px-4">{order.product}</td>
-                      <td className="py-3 px-4">{order.date}</td>
-                      <td className="py-3 px-4">{order.status}</td>
-                      <td className="py-3 px-4">{order.price}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            ) : (
-              <p className="text-grayDark">You have no orders yet.</p>
-            )}
-          </div>
-        )}
-
-        {activeTab === "wishlist" && (
-          <div className=" h-full">
-            <Wishlist />
-          </div>
-        )}
+        
       </div>
 
     </section>
