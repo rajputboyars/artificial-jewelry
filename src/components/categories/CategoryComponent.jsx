@@ -13,7 +13,6 @@ const CategoryComponent = () => {
       ])
     ).values()
   ];
-console.log(categories[0].image);
 
   return (
     <div className="p-6 container mx-auto">
