@@ -1,9 +1,26 @@
 // src/app/reducers/wishlistSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  items: [], // Wishlist items
+
+// Function to load cart data from local storage
+const loadWishlistFromLocalStorage = () => {
+  if (typeof window !== "undefined") {
+  const storedWishlist = localStorage.getItem('wishlist');
+  return storedWishlist ? JSON.parse(storedWishlist) : { items: [] };
+  }
+  return { items: [] }; // Fallback for SSR
 };
+
+// Function to save cart data to local storage
+const saveWishlistToLocalStorage = (state) => {
+  if (typeof window !== "undefined") {
+  localStorage.setItem('wishlist', JSON.stringify(state));
+  }
+};
+
+
+
+const initialState = loadWishlistFromLocalStorage();
 
 const wishlistSlice = createSlice({
   name: 'wishlist',
@@ -14,12 +31,15 @@ const wishlistSlice = createSlice({
       if (!existingItem) {
         state.items.push(action.payload); // Add new item
       }
+      saveWishlistToLocalStorage(state);
     },
     removeFromWishlist: (state, action) => {
       state.items = state.items.filter(item => item.id !== action.payload.id); // Remove item
+      saveWishlistToLocalStorage(state);
     },
     clearWishlist: (state) => {
       state.items = []; // Clear wishlist
+      saveWishlistToLocalStorage(state);
     },
   },
 });

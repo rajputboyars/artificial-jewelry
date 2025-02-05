@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product ,isfeatureCard}) => {
   const [wishlistedProducts, setWishlistedProducts] = useState(false);
 
   const dispatch = useDispatch()
@@ -23,7 +23,7 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className="bg-white group shadow-md rounded-lg p-4 flex flex-col hover:shadow-2xl border transition-all duration-500 xl:last:hidden ">
+    <div className={`bg-white group shadow-md rounded-lg p-4 flex flex-col hover:shadow-2xl border transition-all duration-500 ${isfeatureCard ? "xl:last:hidden":""} `}>
       <div className="relative">
         <span className="absolute right-0 top-0 z-10" >
           {
