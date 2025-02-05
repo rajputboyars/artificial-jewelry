@@ -1,25 +1,19 @@
-// src/axiosInstance.js
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:5000',  // Replace with your backend URL
+    baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000',  // Use environment variable for API URL
     headers: {
         'Content-Type': 'application/json',
     },
+    withCredentials: true,  // Ensure cookies are sent with every request (required for cross-origin requests)
 });
 
 // Request Interceptor
 axiosInstance.interceptors.request.use(
+    
     (config) => {
-        // Get token from localStorage or state
-        const token = localStorage.getItem('authToken');
-
-        if (token) {
-            // Attach the token to the Authorization header
-            config.headers['Authorization'] = `Bearer ${token}`;
-        }
-
-        return config;  // Make sure to return the config to continue the request
+        // No need to manually add the token since it's automatically sent via cookies
+        return config;  // Proceed with the request as usual
     },
     (error) => {
         return Promise.reject(error);
@@ -29,24 +23,20 @@ axiosInstance.interceptors.request.use(
 // Response Interceptor
 axiosInstance.interceptors.response.use(
     (response) => {
-        // Optionally, you can modify the response here if needed
         return response;
     },
-    (error) => {
-        // Global error handling (e.g., if token is expired or unauthorized)
+    async (error) => {
+        
         if (error.response.status === 401) {
-            // Unauthorized, maybe token expired, redirect to login
+            // Unauthorized, maybe token expired, handle accordingly (e.g., redirect to login)
             console.error('Unauthorized! Please login again.');
-            localStorage.removeItem('authToken');
-            window.location.href = '/login';  // Or use react-router
+            window.location.href = '/login'; // Redirect to login
         } else if (error.response.status === 500) {
             // Server error
             console.error('Server error, please try again later.');
         }
         return Promise.reject(error);
     }
-
-
 );
 
 export default axiosInstance;

@@ -30,7 +30,7 @@ export default function Register() {
             const response = await axiosInstance.post('/api/auth/register', userData);
             console.log('Registration successful:', response.data);
             // Redirect to login page or home page
-            router("/login")
+            router.push("/login")
         } catch (err) {
             console.error('Registration failed:', err);
             setError("Something went wrong. Please try again.");
