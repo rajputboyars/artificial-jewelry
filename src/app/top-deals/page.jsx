@@ -20,9 +20,6 @@ const TopDeals = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentProducts = filteredData.slice(indexOfFirstItem, indexOfLastItem);
 
-  console.log(indexOfLastItem,
-    indexOfFirstItem,
-    currentProducts.length,);
   
   const filters = {
     categories: ["bracelets", "rings", "necklaces", "earrings"],

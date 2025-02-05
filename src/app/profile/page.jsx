@@ -1,23 +1,56 @@
 "use client";
 
+import axiosInstance from "@/axiosInstance";
 import Wishlist from "@/components/Wishlist";
+import axios from "axios";
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const ProfilePage = () => {
 
+  const [user, setUser] = useState({});
+  const router = useRouter()
 
-  const user = {
-    name: "John Doe",
-    email: "johndoe@example.com",
-    bio: "A passionate jewelry lover.",
-    // profileImage: "/images/profile.jpg", // Replace with actual profile image
-    orders: [
-      { id: 1, product: "Elegant Earrings", date: "2024-12-20", status: "Delivered", price: "$25" },
-      { id: 2, product: "Stylish Necklace", date: "2024-12-18", status: "Processing", price: "$50" },
-    ],
-    wishlist: ["Beautiful Bracelet", "Classic Ring"],
-  };
+  
+  // const user = {
+  //   name: "John Doe",
+  //   email: "johndoe@example.com",
+  //   bio: "A passionate jewelry lover.",
+  //   profileImage: "/images/profile.jpg", // Replace with actual profile image
+  //   orders: [
+  //     { id: 1, product: "Elegant Earrings", date: "2024-12-20", status: "Delivered", price: "$25" },
+  //     { id: 2, product: "Stylish Necklace", date: "2024-12-18", status: "Processing", price: "$50" },
+  //   ],
+  //   wishlist: ["Beautiful Bracelet", "Classic Ring"],
+  // };
+
+  const fetchUserData = async () => {
+    try {
+      const response = await axiosInstance.get('/api/users/user')
+      console.log("logged in user", response.data);
+      setUser(response.data)
+      // router.push("/login")
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchUserData()
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      const response = await axiosInstance.get('/api/auth/logout')
+      console.log("logout successfully", response);
+      router.push("/login")
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <section className="container mx-auto px-4 py-12 flex flex-col md:flex-row w-full h-[90vh]">
@@ -37,8 +70,8 @@ const ProfilePage = () => {
 
         }
         <div className="text-center md:text-left">
-          <h1 className="text-3xl font-bold text-textPrimary">{user.name}</h1>
-          <p className="text-grayDark">{user.bio}</p>
+          <h1 className="text-3xl font-bold text-textPrimary">{user.username}</h1>
+          {/* <p className="text-grayDark">{user.bio}</p> */}
           <p className="text-secondary">{user.email}</p>
         </div>
       </div>
@@ -52,6 +85,13 @@ const ProfilePage = () => {
           >
             Personal Details
           </button>
+          <button
+          onClick={handleLogout}
+            className={`text-lg font-semibold px-4 py-2 text-white bg-red-500 border-2 rounded-full border-primary`}
+
+          >
+            Log Out
+          </button>
 
         </div>
 
@@ -61,13 +101,13 @@ const ProfilePage = () => {
           <h2 className="text-2xl font-bold text-textPrimary">Personal Details</h2>
           <div className="space-y-4">
             <p className="text-grayDark">
-              <strong>Name:</strong> {user.name}
+              <strong>Name:</strong> {user.username}
             </p>
             <p className="text-grayDark">
               <strong>Email:</strong> {user.email}
             </p>
             <p className="text-grayDark">
-              <strong>Bio:</strong> {user.bio}
+              <strong>Role:</strong> {user.role}
             </p>
           </div>
           <Link href={"/wishlist"}
