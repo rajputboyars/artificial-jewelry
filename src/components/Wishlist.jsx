@@ -1,21 +1,11 @@
 "use client";
 
-import { useSelector, useDispatch } from "react-redux";
-import { removeFromWishlist } from "@/app/reducers/wishlistSlice";
-import { addToCart } from "@/app/reducers/cartSlice";
+import { useSelector } from "react-redux";
 import ProductCard from "./ProductCard";
 
 const Wishlist = () => {
-  const dispatch = useDispatch();
   const wishlistItems = useSelector((state) => state.wishlist.items);
 
-  const handleRemove = (id) => {
-    dispatch(removeFromWishlist({ id }));
-  };
-  const handleAddToCart = (product) => {
-    dispatch(addToCart( product));
-  };
-console.log(wishlistItems,"wishlistItems");
 
   return (
     <div className="h-full py-6 pb-36 px-4">

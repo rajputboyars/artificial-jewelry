@@ -1,6 +1,7 @@
 "use client";
 
 import axiosInstance from "@/axiosInstance";
+import AddressList from "@/components/AddressList";
 import Wishlist from "@/components/Wishlist";
 import axios from "axios";
 import Link from "next/link";
@@ -11,8 +12,8 @@ const ProfilePage = () => {
 
   const [user, setUser] = useState({});
   const router = useRouter()
+  const [activeTab, setActiveTab] = useState("personalDetails");
 
-  
   // const user = {
   //   name: "John Doe",
   //   email: "johndoe@example.com",
@@ -81,12 +82,19 @@ const ProfilePage = () => {
         <div className="flex justify-center md:justify-start gap-6 border-b border-grayLight pb-4 mb-8 w-full">
           <button
             className={`text-lg font-semibold px-4 py-2 text-textPrimary border-b-2 border-primary`}
-
-          >
+onClick={()=>setActiveTab("personalDetails")}
+>
             Personal Details
           </button>
           <button
-          onClick={handleLogout}
+            className={`text-lg font-semibold px-4 py-2 text-textPrimary border-b-2 border-primary`}
+            onClick={()=>setActiveTab("addresses")}
+
+          >
+            Addresses
+          </button>
+          <button
+            onClick={handleLogout}
             className={`text-lg font-semibold px-4 py-2 text-white bg-red-500 border-2 rounded-full border-primary`}
 
           >
@@ -96,32 +104,38 @@ const ProfilePage = () => {
         </div>
 
         {/* Tab Content */}
-
-        <div className="space-y-6">
-          <h2 className="text-2xl font-bold text-textPrimary">Personal Details</h2>
-          <div className="space-y-4">
-            <p className="text-grayDark">
-              <strong>Name:</strong> {user.username}
-            </p>
-            <p className="text-grayDark">
-              <strong>Email:</strong> {user.email}
-            </p>
-            <p className="text-grayDark">
-              <strong>Role:</strong> {user.role}
-            </p>
+        {
+          activeTab === "personalDetails" &&
+          <div className="space-y-6">
+            <h2 className="text-2xl font-bold text-textPrimary">Personal Details</h2>
+            <div className="space-y-4">
+              <p className="text-grayDark">
+                <strong>Name:</strong> {user.username}
+              </p>
+              <p className="text-grayDark">
+                <strong>Email:</strong> {user.email}
+              </p>
+              <p className="text-grayDark">
+                <strong>Role:</strong> {user.role}
+              </p>
+            </div>
+            <Link href={"/wishlist"}
+              className="text-grayDark border inline-block py-2 px-4 rounded-full mr-4 bg-primary"
+            >
+              Wishlist
+            </Link>
+            <Link href={"/order"}
+              className="text-grayDark border inline-block py-2 px-4 rounded-full bg-primary"
+            >
+              Orders
+            </Link>
           </div>
-          <Link href={"/wishlist"}
-            className="text-grayDark border inline-block py-2 px-4 rounded-full mr-4 bg-primary"
-          >
-            Wishlist
-          </Link>
-          <Link href={"/order"}
-            className="text-grayDark border inline-block py-2 px-4 rounded-full bg-primary"
-          >
-            Orders
-          </Link>
-        </div>
+        }
+        {
+          activeTab === "addresses" &&
 
+          <AddressList />
+        }
       </div>
 
     </section>
