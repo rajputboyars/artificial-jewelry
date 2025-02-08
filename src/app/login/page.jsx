@@ -24,7 +24,14 @@ export default function Login() {
 
         try {
             const response = await axiosInstance.post('/api/auth/login', userData);
+            
             console.log('Login successful:', response.data);
+
+            const {token,user} = response.data
+
+            localStorage.setItem("loggedInUser",JSON.stringify(user))
+            localStorage.setItem("token",JSON.stringify(token))
+            
             // Redirect to login page or home page
             router.push('/');  // Redirect to the login page
         } catch (err) {
@@ -33,7 +40,7 @@ export default function Login() {
         } finally {
             setLoading(false);
         }
-        console.log("Logged in with", { email, password });
+        // console.log("Logged in with", { email, password });
     };
 
     return (

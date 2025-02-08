@@ -2,16 +2,13 @@
 
 import axiosInstance from "@/axiosInstance";
 import AddressList from "@/components/AddressList";
-import Wishlist from "@/components/Wishlist";
-import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const ProfilePage = () => {
-
   const [user, setUser] = useState({});
-  const router = useRouter()
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState("personalDetails");
 
   // const user = {
@@ -27,54 +24,73 @@ const ProfilePage = () => {
   // };
 
   const fetchUserData = async () => {
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
     try {
-      const response = await axiosInstance.get('/api/users/user')
+      const response = await axiosInstance.get(`/api/users/user/${user._id}`);
       console.log("logged in user", response.data);
-      setUser(response.data)
+      setUser(response.data);
       // router.push("/login")
-
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchUserData()
+    fetchUserData();
   }, []);
 
   const handleLogout = async () => {
     try {
-      const response = await axiosInstance.get('/api/auth/logout')
+      const response = await axiosInstance.get("/api/auth/logout");
       console.log("logout successfully", response);
-      router.push("/login")
-
+      router.push("/login");
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   return (
     <section className="container mx-auto px-4 py-12 flex flex-col md:flex-row w-full h-[90vh]">
       {/* Profile Header */}
       <div className="flex flex-col items-center gap-6 mb-12 w-full lg:w-1/3 h-full">
-        {
-          user.profileImage ?
-            <img
-              src={user.profileImage}
-              alt={user.name}
-              className="w-32 h-32 rounded-full shadow-lg"
+        {user.profileImage ? (
+          <img
+            src={user.profileImage}
+            alt={user.name}
+            className="w-32 h-32 rounded-full shadow-lg"
+          />
+        ) : (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="size-6 w-32 h-32"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
             />
-            :
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 w-32 h-32">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-            </svg>
-
-        }
+          </svg>
+        )}
         <div className="text-center md:text-left">
-          <h1 className="text-3xl font-bold text-textPrimary">{user.username}</h1>
+          <h1 className="text-3xl font-bold text-textPrimary">
+            {user.username}
+          </h1>
           {/* <p className="text-grayDark">{user.bio}</p> */}
           <p className="text-secondary">{user.email}</p>
         </div>
+        {user.role === "admin" && (
+          <Link
+            href={"/admin"}
+            // onClick={handleLogout}
+            className={`text-lg font-semibold px-4 py-2 text-white bg-primary border-2 rounded-full border-primary`}
+          >
+            Admin Dashboard
+          </Link>
+        )}
       </div>
 
       <div className="w-full lg:w-2/3">
@@ -82,32 +98,31 @@ const ProfilePage = () => {
         <div className="flex justify-center md:justify-start gap-6 border-b border-grayLight pb-4 mb-8 w-full">
           <button
             className={`text-lg font-semibold px-4 py-2 text-textPrimary border-b-2 border-primary`}
-onClick={()=>setActiveTab("personalDetails")}
->
+            onClick={() => setActiveTab("personalDetails")}
+          >
             Personal Details
           </button>
           <button
             className={`text-lg font-semibold px-4 py-2 text-textPrimary border-b-2 border-primary`}
-            onClick={()=>setActiveTab("addresses")}
-
+            onClick={() => setActiveTab("addresses")}
           >
             Addresses
           </button>
+
           <button
             onClick={handleLogout}
             className={`text-lg font-semibold px-4 py-2 text-white bg-red-500 border-2 rounded-full border-primary`}
-
           >
             Log Out
           </button>
-
         </div>
 
         {/* Tab Content */}
-        {
-          activeTab === "personalDetails" &&
+        {activeTab === "personalDetails" && (
           <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-textPrimary">Personal Details</h2>
+            <h2 className="text-2xl font-bold text-textPrimary">
+              Personal Details
+            </h2>
             <div className="space-y-4">
               <p className="text-grayDark">
                 <strong>Name:</strong> {user.username}
@@ -119,25 +134,22 @@ onClick={()=>setActiveTab("personalDetails")}
                 <strong>Role:</strong> {user.role}
               </p>
             </div>
-            <Link href={"/wishlist"}
+            <Link
+              href={"/wishlist"}
               className="text-grayDark border inline-block py-2 px-4 rounded-full mr-4 bg-primary"
             >
               Wishlist
             </Link>
-            <Link href={"/order"}
+            <Link
+              href={"/order"}
               className="text-grayDark border inline-block py-2 px-4 rounded-full bg-primary"
             >
               Orders
             </Link>
           </div>
-        }
-        {
-          activeTab === "addresses" &&
-
-          <AddressList />
-        }
+        )}
+        {activeTab === "addresses" && <AddressList />}
       </div>
-
     </section>
   );
 };

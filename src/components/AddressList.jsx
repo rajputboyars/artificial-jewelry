@@ -30,7 +30,7 @@ const AddressList = () => {
 
   useEffect(() => {
     fetchAllAddressOfUser()
-  }, []);
+  }, [setAddresses]);
 
 
   const handleAddAddress = async () => {
@@ -77,14 +77,16 @@ const AddressList = () => {
     setAddresses(updatedAddresses);
   };
 
-  const handleDeleteAddress = async (id) => {
+  const handleDeleteAddress = async (addressId) => {
     try {
-      const response = await axiosInstance.delete(`/api/addresses/${id}`)
+      const response = await axiosInstance.delete(`/api/addresses/${addressId}`,{
+        withCredentials:true
+      })
       console.log("address delete successfully", response);
     } catch (error) {
       console.log(error.message);
     }
-    const filteredAddresses = addresses.filter((address) => address.id !== id);
+    const filteredAddresses = addresses.filter((address) => address.id !== addressId);
     setAddresses(filteredAddresses);
   };
 
